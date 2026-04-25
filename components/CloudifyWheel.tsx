@@ -76,14 +76,14 @@ export default function CloudifyWheel() {
   }, [items])
 
   // 🔥 gửi list lên server
-  const handleApply = () => {
+    const handleApply = () => {
     const list = rawText
-      .split("\n")
-      .map((i) => i.trim())
-      .filter((i) => i !== "")
+        .split("\n")
+        .map(i => i.trim())
+        .filter(Boolean)
 
     socket.emit("list:update", list)
-  }
+    }
 
   // 🔥 quay
   const handleSpin = () => {

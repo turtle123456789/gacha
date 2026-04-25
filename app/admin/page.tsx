@@ -7,18 +7,14 @@ export default function Admin() {
   const [items, setItems] = useState<string[]>([])
   const [selected, setSelected] = useState<number | null>(null)
 
-useEffect(() => {
-  socket.on("list:update", (list: string[]) => {
-    console.log("📱 admin nhận list:", list)
-    setItems(list)
-    setSelected(null)
-  })
+  useEffect(() => {
+    socket.on("list:update", (list) => {
+      console.log("📥 ADMIN RECEIVE:", list)
+      setItems(list)
+    })
 
-  return () => {
-    socket.off("list:update")
-  }
-}, [])
-
+    return () => socket.off("list:update")
+  }, [])
   const handleSelect = (index: number) => {
     if (index < 0 || index >= items.length) return
 
