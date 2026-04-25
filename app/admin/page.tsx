@@ -23,6 +23,8 @@ useEffect(() => {
     if (index < 0 || index >= items.length) return
 
     setSelected(index)
+    console.log("ADMIN SELECT:", i)
+
     socket.emit("admin:select", index)
   }
 
