@@ -27,9 +27,6 @@ io.on("connection", (socket) => {
 
   socket.on("spin", () => {
     if (!currentItems.length) return
-
-    console.log("🎯 forcedIndex:", forcedIndex)
-
     let index
 
     if (
@@ -38,10 +35,8 @@ io.on("connection", (socket) => {
       forcedIndex < currentItems.length
     ) {
       index = forcedIndex
-      console.log("🔥 ADMIN PICK:", index)
     } else {
       index = Math.floor(Math.random() * currentItems.length)
-      console.log("🎲 RANDOM:", index)
     }
 
     // ❗ reset SAU khi dùng
