@@ -8,18 +8,22 @@ export default function Admin() {
   const [selected, setSelected] = useState<number | null>(null)
 
   useEffect(() => {
-    socket.on("list:update", (list) => {
+    socket.on("list:update", (list: string[]) => {
       setItems(list)
+      setSelected(null)
     })
 
-    return () => socket.off("list:update")
+    return () => {
+      socket.off("list:update")
+    }
   }, [])
-  const handleSelect = (index: number) => {
-    if (index < 0 || index >= items.length) return
 
-    setSelected(index)
-    socket.emit("admin:select", index)
-  }
+const handleSelect = (index: number) => {
+  if (index < 0 || index >= items.length) return
+
+  setSelected(index)
+  socket.emit("admin:select", index)
+}
 
   return (
     <div className="p-5">
