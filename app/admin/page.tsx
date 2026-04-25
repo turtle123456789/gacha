@@ -9,7 +9,6 @@ export default function Admin() {
 
   useEffect(() => {
     socket.on("list:update", (list) => {
-      console.log("📥 ADMIN RECEIVE:", list)
       setItems(list)
     })
 
